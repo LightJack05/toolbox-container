@@ -1,5 +1,4 @@
 FROM alpine:latest
-USER 1000
 
 RUN apk add fastfetch
 
@@ -10,5 +9,7 @@ RUN apk add gdb delve
 RUN apk add grml-zsh-config
 
 COPY .zshrc /root/.zshrc
+
+USER 1000
 
 CMD ["/bin/zsh"]
