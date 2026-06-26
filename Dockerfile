@@ -8,8 +8,16 @@ RUN apk add gdb delve
 
 RUN apk add grml-zsh-config
 
+RUN apk add doas
+
 COPY .zshrc /root/.zshrc
 
+RUN adduser -u 1000 -s /bin/zsh -G wheel -D debug debug
+
+RUN echo "permit nopass :wheel" >> /etc/doas.conf
+
 USER 1000
+
+COPY .zshrc /home/debug/.zshrc
 
 CMD ["/bin/zsh"]
